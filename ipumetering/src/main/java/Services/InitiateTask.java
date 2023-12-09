@@ -1,5 +1,6 @@
 package Services;
 
+import org.example.Modals.InitiatorTaskResponse;
 import org.example.Modals.LoginResponse;
 import org.springframework.http.*;
 import org.springframework.web.client.RestClientException;
@@ -7,8 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 public class InitiateTask {
     static Logger logger = new Logger();
-    static void jobLevelMeteringInitiator(LoginResponse currentSession)
-    {
+    static InitiatorTaskResponse jobLevelMeteringInitiator(LoginResponse currentSession) throws InterruptedException {
         RestTemplate restTemplate =  new RestTemplate();
         if(currentSession == null)
         {
@@ -24,16 +24,22 @@ public class InitiateTask {
 
             headers.set("INFA-SESSION-ID", currentSession.getIcSessionId());
 
-            String requestBody = "{\"type\": \"login\",  \"username\": \"repro_user\", \"password\": \"infa@1234\"}";
+            String requestBody = "{\"startDate\": \"2023-11-01T00:00:00Z\", " +
+                    " \"endDate\": \"2023-12-01T00:00:00Z\", " +
+                    " \"allMeters\": \"FALSE\", " +
+                    " \"meterId\":\""+Utilities.Data_Integration+"\",  "+
+
+                    "\"callbackUrl\": \"https://MyExportJobStatus.com\"}";
+
             HttpEntity <String> entity = new HttpEntity<String>(requestBody, headers);
-            ResponseEntity <LoginResponse> responseEntity =   restTemplate.exchange(
-                    Utilities.loginUrl_dmUS, HttpMethod.POST,entity, LoginResponse.class);
+            ResponseEntity <InitiatorTaskResponse> responseEntity =   restTemplate.exchange(
+                   currentSession.getServerUrl()+ Utilities.joblevelMeteringInitiatorURL, HttpMethod.POST,entity, InitiatorTaskResponse.class);
 
 
-            LoginResponse sessionDetails = responseEntity.getBody();
-
-
-            System.out.println("Session URL : "+sessionDetails.getServerUrl());
+            InitiatorTaskResponse response = responseEntity.getBody();
+            System.out.println("JOB ID : "+response.getJobId());
+//            System.out.println(responseEntity);
+            return response;
 
 
 
@@ -44,10 +50,8 @@ public class InitiateTask {
         catch (RestClientException ex)
         {
             logger.errorLogger(ex.getMessage());
+            return null;
         }
-
-
-
     }
 
 }
