@@ -8,12 +8,14 @@ import org.springframework.http.*;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
+
 public class JobStatusChecker
 {
     static Logger logger = new Logger();
 
 
-    public static StatusCheckerResponse checkJobStatus(LoginResponse currentSession, InitiatorTaskResponse initiatorTaskResponse) throws InterruptedException {
+    public static StatusCheckerResponse checkJobStatus(LoginResponse currentSession, InitiatorTaskResponse initiatorTaskResponse) throws InterruptedException, IOException {
         RestTemplate restTemplate =  new RestTemplate();
         if(currentSession == null)
         {

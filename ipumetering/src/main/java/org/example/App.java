@@ -5,6 +5,8 @@ import Services.Logger;
 import Services.LoginAPI;
 import org.example.Modals.LoginResponse;
 
+import java.io.IOException;
+
 /**
  * Hello world!
  *
@@ -12,11 +14,8 @@ import org.example.Modals.LoginResponse;
 public class App {
 
    
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
 
         AppStart.startProject();
-
-
-
     }
 }

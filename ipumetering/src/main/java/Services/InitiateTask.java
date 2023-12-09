@@ -6,9 +6,11 @@ import org.springframework.http.*;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
+
 public class InitiateTask {
     static Logger logger = new Logger();
-    static InitiatorTaskResponse jobLevelMeteringInitiator(LoginResponse currentSession) throws InterruptedException {
+    static InitiatorTaskResponse jobLevelMeteringInitiator(LoginResponse currentSession) throws InterruptedException, IOException {
         RestTemplate restTemplate =  new RestTemplate();
         if(currentSession == null)
         {

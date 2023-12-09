@@ -5,8 +5,10 @@ import org.example.Modals.InitiatorTaskResponse;
 import org.example.Modals.LoginResponse;
 import org.example.Modals.StatusCheckerResponse;
 
+import java.io.IOException;
+
 public class AppStart {
-    public static boolean startProject() throws InterruptedException {
+    public static boolean startProject() throws InterruptedException, IOException {
         Logger logger = new Logger();
         logger.debugLogger("LOGIN CALL");
         LoginResponse userSession = LoginAPI.loginCall();
@@ -47,12 +49,8 @@ public class AppStart {
 
         logger.debugLogger(statusCheckerResponse.getStatus());
 
-
-
-
-
-
-
+        logger.debugLogger("DOWNLOADING FILE ");
+        FileDownloader.downloadFile(userSession, taskInitiatorResponse, statusCheckerResponse);
         return true;
     }
 }

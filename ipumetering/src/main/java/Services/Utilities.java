@@ -5,6 +5,7 @@ public class Utilities {
 
     public static final String joblevelMeteringInitiatorURL = "/public/core/v3/license/metering/ExportServiceJobLevelMeteringData";
     public static final String exportMeteringJobStatusURL = "/public/core/v3/license/metering/ExportMeteringData/";
+    public static final String downloadMeteringDataURL = "/public/core/v3/license/metering/ExportMeteringData/";
     public static final String Data_Integration = "a2nB20h1o0lc7k3P9xtWS8";
     public static final String  Data_Integration_with_Advanced_Serverless	= "35m9fB23Tykj4Fb3rN5q2J";
     public static final String Data_Integration_Elastic	="3TaYTMo6BFYeNIABfVmH0n";
