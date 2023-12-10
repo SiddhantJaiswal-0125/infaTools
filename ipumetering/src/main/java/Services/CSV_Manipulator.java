@@ -2,11 +2,17 @@ package Services;
 
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
+import com.opencsv.bean.StatefulBeanToCsv;
+import com.opencsv.bean.StatefulBeanToCsvBuilder;
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 import org.example.Modals.CDIReportStructure;
 import org.example.Modals.FileStructure;
 
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -16,7 +22,7 @@ import java.util.Scanner;
 
 public class CSV_Manipulator {
     static Logger logger = new Logger();
-    public static List<CDIReportStructure> readCSV(FileStructure fileStructure) throws FileNotFoundException {
+    public static List<CDIReportStructure> readCSV(FileStructure fileStructure) throws IOException {
 
 
         List<CDIReportStructure> report = new ArrayList<>();
@@ -42,8 +48,7 @@ public class CSV_Manipulator {
 
 
 
-    public static List<CDIReportStructure> addExecutionTime(List<CDIReportStructure> report)
-    {
+    public static List<CDIReportStructure> addExecutionTime(List<CDIReportStructure> report) throws IOException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
 
 
@@ -91,6 +96,27 @@ public class CSV_Manipulator {
 
 
 
+
+
         return report;
     }
+
+
+    public static void CSVcreator(List<CDIReportStructure> reports ) throws IOException {
+        Writer writer = Files.newBufferedWriter(Paths.get("unzipped_files/CDI_report_withExecutionTime.csv"));
+
+        StatefulBeanToCsv<CDIReportStructure> beanToCsv = new StatefulBeanToCsvBuilder<CDIReportStructure>(writer).build();
+
+        try {
+
+            for (CDIReportStructure rep : reports)
+                beanToCsv.write(rep);
+        } catch (CsvDataTypeMismatchException | CsvRequiredFieldEmptyException e) {
+            // handle the exceptions
+            e.printStackTrace();
+        } finally {
+            writer.close();
+
+    }
+}
 }

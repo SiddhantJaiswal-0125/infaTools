@@ -61,7 +61,11 @@ public class AppStart {
       report = CSV_Manipulator.addExecutionTime(report);
         logger.debugLogger("After Adding Execution Time");
 
-        System.out.println(report);
+
+
+        logger.debugLogger("creating CSV file");
+        CSV_Manipulator.CSVcreator(report);
+
 
         return true;
     }

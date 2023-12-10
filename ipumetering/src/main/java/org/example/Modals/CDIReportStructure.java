@@ -1,6 +1,7 @@
 package org.example.Modals;
 
 import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.CsvBindByPosition;
 
 public class CDIReportStructure {
     @CsvBindByName(column = "Task ID")
@@ -53,15 +54,17 @@ public class CDIReportStructure {
     private  String OBMTaskTime;
 
 
+    @CsvBindByName(column = "Execution Time")
+    private String ExecutionTime;
     public String getExecutionTime() {
-        return executionTime;
+        return ExecutionTime;
     }
 
     public void setExecutionTime(String executionTime) {
-        this.executionTime = executionTime;
+        this.ExecutionTime = executionTime;
     }
 
-    private String executionTime;
+
     public String getTaskID() {
         return TaskID;
     }
@@ -98,7 +101,7 @@ public class CDIReportStructure {
                 ", MeteredValue='" + MeteredValue + '\'' +
                 ", AuditTime='" + AuditTime + '\'' +
                 ", OBMTaskTime='" + OBMTaskTime + '\'' +
-                ", executionTime='" + executionTime + '\'' +
+                ", executionTime='" + ExecutionTime + '\'' +
                 '}';
     }
 
