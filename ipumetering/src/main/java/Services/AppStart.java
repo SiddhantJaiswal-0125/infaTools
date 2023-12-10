@@ -1,11 +1,13 @@
 package Services;
 
 import org.example.App;
+import org.example.Modals.FileStructure;
 import org.example.Modals.InitiatorTaskResponse;
 import org.example.Modals.LoginResponse;
 import org.example.Modals.StatusCheckerResponse;
 
 import java.io.IOException;
+import java.util.List;
 
 public class AppStart {
     public static boolean startProject() throws InterruptedException, IOException {
@@ -41,16 +43,18 @@ public class AppStart {
         while(statusCheckerResponse!=null && statusCheckerResponse.getStatus().equalsIgnoreCase("SUCCESS")==false)
         {
 
-            Thread.sleep(10000);
+            Thread.sleep(5000);
+
             logger.debugLogger("STATUS CHECKING AGAIN");
             statusCheckerResponse   = JobStatusChecker.checkJobStatus(userSession,taskInitiatorResponse);
+            logger.debugLogger("Recheck the status after 5 Seconds");
         }
 
 
         logger.debugLogger(statusCheckerResponse.getStatus());
 
         logger.debugLogger("DOWNLOADING FILE ");
-        FileDownloader.downloadFile(userSession, taskInitiatorResponse, statusCheckerResponse);
+     List<FileStructure> unzippedFiles =  FileDownloader.downloadFile(userSession, taskInitiatorResponse, statusCheckerResponse);
         return true;
     }
 }

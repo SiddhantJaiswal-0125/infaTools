@@ -1,5 +1,6 @@
 package Services;
 
+import org.example.Modals.FileStructure;
 import org.example.Modals.InitiatorTaskResponse;
 import org.example.Modals.LoginResponse;
 import org.example.Modals.StatusCheckerResponse;
@@ -8,11 +9,13 @@ import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public class FileDownloader {
-    public static void downloadFile(LoginResponse currentSession, InitiatorTaskResponse initiatorTaskResponse, StatusCheckerResponse statusCheckerResponse) throws IOException {
+    public static List<FileStructure> downloadFile(LoginResponse currentSession, InitiatorTaskResponse initiatorTaskResponse, StatusCheckerResponse statusCheckerResponse) throws IOException {
         String url = currentSession.getServerUrl()+Utilities.downloadMeteringDataURL+statusCheckerResponse.getJobId()+"/download";
 
         RestTemplate restTemplate = new RestTemplate();
@@ -23,6 +26,7 @@ public class FileDownloader {
 
         HttpEntity<String> entity = new HttpEntity<String>(requestBody, headers);
 
+        List<FileStructure> unzippedFiles = new ArrayList<>();
 
         // Request the file
         ResponseEntity<Resource> response = restTemplate.exchange(url, HttpMethod.GET, entity, Resource.class);
@@ -49,6 +53,16 @@ public class FileDownloader {
 
                 while (zipEntry != null) {
                     File newFile = new File("unzipped_files/" + zipEntry.getName());
+
+
+                    FileStructure curr = new FileStructure();
+
+                    curr.setFileName(zipEntry.getName());
+                    curr.setFilePath(newFile.getPath());
+                    unzippedFiles.add(curr);
+
+
+
                     // Create all non-exists folders
                     // else you will hit FileNotFoundException for compressed folder
                     new File(newFile.getParent()).mkdirs();
@@ -63,8 +77,41 @@ public class FileDownloader {
                     zipEntry = zis.getNextEntry();
                 }
 
+
                 zis.closeEntry();
             }
         }
+        deleteFile("downloaded_file.zip");
+
+
+
+
+        return unzippedFiles;
+    }
+
+    static  boolean deleteFile(String path)
+    {
+        System.out.println("Deleting file at path : "+path);
+        try
+        {
+            File f= new File(path);           //file to be delete
+            if(f.delete())                      //returns Boolean value
+            {
+                System.out.println(f.getName() + " deleted");   //getting and printing the file name
+
+                return  true;
+            }
+            else
+            {
+                System.out.println("failed");
+            return  false;
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        return  false;
+        }
+
     }
 }
