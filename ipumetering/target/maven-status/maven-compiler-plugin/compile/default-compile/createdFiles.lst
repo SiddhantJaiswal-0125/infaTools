@@ -1,11 +1,14 @@
+org\example\Modals\CDIReportStructure.class
 org\example\Modals\StatusCheckerResponse.class
 org\example\Modals\LoginResponse.class
 Services\FileDownloader.class
 org\example\Modals\LoginResponse$Role.class
+org\example\Modals\FileStructure.class
 Services\JobStatusChecker.class
 Services\Logger.class
 Services\Utilities.class
 Services\InitiateTask.class
+Services\CSV_Manipulator.class
 org\example\App.class
 Services\AppStart.class
 org\example\Modals\LoginResponse$UserGroup.class
