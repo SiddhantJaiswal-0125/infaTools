@@ -60,9 +60,6 @@ public class FileDownloader {
                     curr.setFileName(zipEntry.getName());
                     curr.setFilePath(newFile.getPath());
                     unzippedFiles.add(curr);
-
-
-
                     // Create all non-exists folders
                     // else you will hit FileNotFoundException for compressed folder
                     new File(newFile.getParent()).mkdirs();

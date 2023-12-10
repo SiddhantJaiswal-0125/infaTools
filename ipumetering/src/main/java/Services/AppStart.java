@@ -1,10 +1,7 @@
 package Services;
 
 import org.example.App;
-import org.example.Modals.FileStructure;
-import org.example.Modals.InitiatorTaskResponse;
-import org.example.Modals.LoginResponse;
-import org.example.Modals.StatusCheckerResponse;
+import org.example.Modals.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -42,19 +39,30 @@ public class AppStart {
         StatusCheckerResponse statusCheckerResponse =  JobStatusChecker.checkJobStatus(userSession,taskInitiatorResponse);
         while(statusCheckerResponse!=null && statusCheckerResponse.getStatus().equalsIgnoreCase("SUCCESS")==false)
         {
-
+            logger.debugLogger("Recheck the status after 5 Seconds");
             Thread.sleep(5000);
 
             logger.debugLogger("STATUS CHECKING AGAIN");
             statusCheckerResponse   = JobStatusChecker.checkJobStatus(userSession,taskInitiatorResponse);
-            logger.debugLogger("Recheck the status after 5 Seconds");
+
         }
 
 
         logger.debugLogger(statusCheckerResponse.getStatus());
 
         logger.debugLogger("DOWNLOADING FILE ");
-     List<FileStructure> unzippedFiles =  FileDownloader.downloadFile(userSession, taskInitiatorResponse, statusCheckerResponse);
+        List<FileStructure> unzippedFiles =  FileDownloader.downloadFile(userSession, taskInitiatorResponse, statusCheckerResponse);
+
+
+        //FOR NOW WE WILL TRY FOR CDI ONLY
+      List<CDIReportStructure> report =   CSV_Manipulator.readCSV(unzippedFiles.get(0));
+
+
+      report = CSV_Manipulator.addExecutionTime(report);
+        logger.debugLogger("After Adding Execution Time");
+
+        System.out.println(report);
+
         return true;
     }
 }
