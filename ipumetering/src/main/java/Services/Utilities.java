@@ -23,4 +23,41 @@ public class Utilities {
     public static final String  Integration_Hub	="fqttkiGnSaHeXW255z4IcD";
 
 
+
+    /*      AMERICAN PODs */
+    public static final String USW1_AWS_POD1_LoginURL = "https://dm-us.informaticacloud.com/";
+    public static final String USE2_AWS_POD2_LoginURL = "https://dm-us.informaticacloud.com/";
+    public static final String USW3_AWS_POD3_LoginURL = "https://dm-us.informaticacloud.com/";
+    public static final String USE4_AWS_POD4_LoginURL = "https://dm-us.informaticacloud.com/";
+    public static final String USW5_AWS_POD5_LoginURL = "https://dm-us.informaticacloud.com/";
+    public static final String USE6_AWS_POD6_LoginURL = "https://dm-us.informaticacloud.com/";
+    public static final String USW1_1_Azure_POD7_LoginURL = "https://dm1-us.informaticacloud.com";
+    public static final String USW3_1_Azure_POD8_LoginURL = "https://dm1-us.informaticacloud.com";
+    public static final String USW1_2_GCP_POD9_LoginURL = "https://dm2-us.informaticacloud.com";
+    public static final String CAC1_AWS_POD10_LoginURL = "https://dm-na.informaticacloud.com";
+    public static final String CAC2_AZURE_POD21_LoginURL = "https://dm1-ca.informaticacloud.com";
+    public static final String USE1_ORACLE_POD22_LoginURL = "https://dm3-us.informaticacloud.com/";
+
+
+    /*    APJ PODS    */
+    public static final String APSE1_AWS_POD14_LoginURL = "https://dm-ap.informaticacloud.com";
+    public static final String APSE2_AZURE_POD15_LoginURL = "https://dm1-apse.informaticacloud.com";
+    public static final String APNE1_AZURE_POD16_LoginURL = "https://dm1-ap.informaticacloud.com";
+    public static final String APNE2_AWS_POD19_LoginURL = "https://dm-apne.informaticacloud.com";
+    public static final String APAUC1_AZURE_POD17_LoginURL = "https://dm1-apau.informaticacloud.com";
+
+
+
+
+    /*     EMEA PODs     */
+
+    public static final String EMW1_AWS_POD11_LoginURL = "https://dm-ap.informaticacloud.com";
+    public static final String EMC1_AZURE_POD12_LoginURL = "https://dm1-apse.informaticacloud.com";
+    public static final String UK1_AWS_POD13_LoginURL = "https://dm1-ap.informaticacloud.com";
+    public static final String EMSE1_AZURE_POD18_LoginURL = "https://dm-apne.informaticacloud.com";
+    public static final String EMW2_GCP_POD20_LoginURL = "https://dm1-apau.informaticacloud.com";
+
+
+
+
 }
