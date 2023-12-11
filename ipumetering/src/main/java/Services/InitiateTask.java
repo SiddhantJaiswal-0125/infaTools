@@ -3,6 +3,7 @@ package Services;
 import org.example.Modals.InitiatorTaskResponse;
 import org.example.Modals.LoginResponse;
 import org.springframework.http.*;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
@@ -10,7 +11,7 @@ import java.io.IOException;
 
 public class InitiateTask {
     static Logger logger = new Logger();
-    public static InitiatorTaskResponse jobLevelMeteringInitiator(LoginResponse currentSession, String meteringID) throws InterruptedException, IOException {
+    public static InitiatorTaskResponse jobLevelMeteringInitiator(LoginResponse currentSession, String meteringID,String startDate, String endDate) throws InterruptedException, IOException {
         RestTemplate restTemplate =  new RestTemplate();
         if(currentSession == null)
         {
@@ -26,11 +27,15 @@ public class InitiateTask {
 
             headers.set("INFA-SESSION-ID", currentSession.getIcSessionId());
 
-            String requestBody = "{\"startDate\": \"2023-11-01T00:00:00Z\", " +
+            String requestBody2 = "{\"startDate\": \"2023-11-01T00:00:00Z\", " +
                     " \"endDate\": \"2023-12-01T00:00:00Z\", " +
                     " \"allMeters\": \"FALSE\", " +
                     " \"meterId\":\""+meteringID+"\",  "+
-
+                    "\"callbackUrl\": \"https://MyExportJobStatus.com\"}";
+            String requestBody = "{\"startDate\": \""+startDate+"\", " +
+                    " \"endDate\": \""+endDate+"\", " +
+                    " \"allMeters\": \"FALSE\", " +
+                    " \"meterId\":\""+meteringID+"\",  "+
                     "\"callbackUrl\": \"https://MyExportJobStatus.com\"}";
 
             HttpEntity <String> entity = new HttpEntity<String>(requestBody, headers);
@@ -38,10 +43,12 @@ public class InitiateTask {
                    currentSession.getServerUrl()+ Utilities.joblevelMeteringInitiatorURL, HttpMethod.POST,entity, InitiatorTaskResponse.class);
 
 
-            InitiatorTaskResponse response = responseEntity.getBody();
-            System.out.println("JOB ID : "+response.getJobId());
-//            System.out.println(responseEntity);
-            return response;
+
+
+                InitiatorTaskResponse response = responseEntity.getBody();
+
+                System.out.println("JOB ID : " + response.getJobId());
+                return response;
 
 
 
@@ -51,6 +58,9 @@ public class InitiateTask {
 
         catch (RestClientException ex)
         {
+
+
+       logger.errorLogger("Please check the error log message for more information.");
             logger.errorLogger(ex.getMessage());
             return null;
         }
