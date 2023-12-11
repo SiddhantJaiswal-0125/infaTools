@@ -7,6 +7,7 @@ import com.opencsv.bean.StatefulBeanToCsvBuilder;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 import org.example.Modals.CDIReportStructure;
+//import org.example.Modals.CSVobject_writer;
 import org.example.Modals.FileStructure;
 
 
@@ -22,9 +23,37 @@ import java.util.Scanner;
 
 public class CSV_Manipulator {
     static Logger logger = new Logger();
+
+//    public static  List<CDIReportStructure> copyReportToCSVwriter(List<CDIReportStructure> rep) {
+//        List<CDIReportStructure> res = new ArrayList<>();
+//
+//        for (CDIReportStructure ri : rep)
+//        {
+//            CSVobject_writer csv = new CSVobject_writer();
+//            csv.setAuditTime(ri.getAuditTime());
+//            csv.setEnvironment(ri.getEnvironment());
+//            csv.setCoresUsed(ri.getCoresUsed());
+//            csv.setEndTime(ri.getEndTime());
+//            csv.setFolderName(ri.getFolderName());
+//            csv.setOrgID(ri.getOrgID());
+//            csv.setStatus(ri.getStatus());
+//            csv.setTaskRunID(ri.getTaskRunID());
+//            csv.setTaskType(ri.getTaskType());
+//            csv.setTaskID(ri.getTaskID());
+//            csv.setTaskName(ri.getTaskName());
+//            csv.setTaskObject(ri.getTaskObject());
+//            csv.setProjectName(ri.getProjectName());
+//            csv.setEnvironmentID(ri.getEnvironmentID());
+//            csv.setStartTime(ri.getStartTime());
+//            csv.setMeteredValue(ri.getMeteredValue());
+//            csv.setOBMTaskTime(ri.getOBMTaskTime());
+//
+//
+//            res.add(csv);
+//        }
+//        return  res;
+//    }
     public static List<CDIReportStructure> readCSV(FileStructure fileStructure) throws IOException {
-
-
         List<CDIReportStructure> report = new ArrayList<>();
 
 
@@ -40,8 +69,6 @@ public class CSV_Manipulator {
             e.printStackTrace();
         }
 
-
-        addExecutionTime(report);
 
         return report;
     }
@@ -103,7 +130,7 @@ public class CSV_Manipulator {
 
 
     public static void CSVcreator(List<CDIReportStructure> reports ) throws IOException {
-        Writer writer = Files.newBufferedWriter(Paths.get("unzipped_files/CDI_report_withExecutionTime.csv"));
+        Writer writer = Files.newBufferedWriter(Paths.get("unzipped_files/CDI_report_with_ExecutionTime.csv"));
 
         StatefulBeanToCsv<CDIReportStructure> beanToCsv = new StatefulBeanToCsvBuilder<CDIReportStructure>(writer).build();
 

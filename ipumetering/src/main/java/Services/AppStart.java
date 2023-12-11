@@ -45,7 +45,7 @@ public class AppStart {
 
         System.out.println();
         System.out.println();
-        System.out.println("Please enter the number corresponding to your POD ");
+        System.out.println("Please enter the number corresponding to your POD  or enter -1 if you want to exit.");
         int podNum = sc.nextInt();
 
         if(podNum<1 || podNum>22)
@@ -122,11 +122,17 @@ public class AppStart {
       List<CDIReportStructure> report =   CSV_Manipulator.readCSV(unzippedFiles.get(0));
 
 
-      report = CSV_Manipulator.addExecutionTime(report);
+
+
+//      List<CSVobject_writer> csvwriterlist = CSV_Manipulator.copyReportToCSVwriter(report);
+//      csvwriterlist = CSV_Manipulator.addExecutionTime(csvwriterlist);
+
+
+
         logger.debugLogger("After Adding Execution Time");
 
 
-
+        report = CSV_Manipulator.addExecutionTime(report);
         logger.debugLogger("creating CSV file");
         CSV_Manipulator.CSVcreator(report);
 
