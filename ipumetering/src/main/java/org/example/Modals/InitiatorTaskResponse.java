@@ -9,6 +9,7 @@ public class InitiatorTaskResponse {
     private String meterId;
     private String startDate;
 
+
     public String getJobId() {
         return jobId;
     }

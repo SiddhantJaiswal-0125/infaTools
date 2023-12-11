@@ -6,8 +6,50 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Scanner;
+
 public class LoginAPI {
 
+
+    static  int getPodNum()
+    {
+        Scanner sc = new Scanner(System.in);
+
+        logger.debugLogger("Login Started");
+        logger.debugLogger("Please select your POD ");
+        System.out.println("1. USW1_AWS_POD1");
+        System.out.println("2. USE2_AWS_POD2");
+        System.out.println("3. USW3_AWS_POD3");
+        System.out.println("4. USE4_AWS_POD4");
+        System.out.println("5. USW5_AWS_POD5");
+        System.out.println("6. USE6_AWS_POD6");
+        System.out.println("7. USW1_1_Azure_POD7");
+        System.out.println("8. USW3_1_Azure_POD8");
+        System.out.println("9. USW1_2_GCP_POD9");
+        System.out.println("10. CAC1_AWS_POD10");
+        System.out.println("11. CAC2_AZURE_POD21");
+        System.out.println("12. USE1_ORACLE_POD22");
+        System.out.println("13. APSE1_AWS_POD14");
+        System.out.println("14. APSE2_AZURE_POD15");
+        System.out.println("15. APNE1_AZURE_POD16");
+        System.out.println("16. APNE2_AWS_POD19");
+
+
+        System.out.println("17. APAUC1_AZURE_POD17");
+        System.out.println("18. EMW1_AWS_POD11");
+
+        System.out.println("19. EMC1_AZURE_POD13");
+        System.out.println("20. UK1_AWS_POD13");
+        System.out.println("21. EMSE1_AZURE_POD18");
+        System.out.println("22. EMW2_GCP_POD20");
+
+        System.out.println();
+        System.out.println();
+        System.out.println("Please enter the number corresponding to your POD  or enter -1 if you want to exit.");
+        int podNum = sc.nextInt();
+
+        return podNum;
+    }
    static Logger logger = new Logger();
    public static LoginResponse loginCall(String podUrl, String username, String password)
     {

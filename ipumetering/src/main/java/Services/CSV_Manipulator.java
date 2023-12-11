@@ -130,7 +130,7 @@ public class CSV_Manipulator {
 
 
     public static void CSVcreator(List<CDIReportStructure> reports ) throws IOException {
-        Writer writer = Files.newBufferedWriter(Paths.get("unzipped_files/CDI_report_with_ExecutionTime.csv"));
+        Writer writer = Files.newBufferedWriter(Paths.get(Utilities.parentDirectory+ "/unzipped_files/CDI_report_with_ExecutionTime.csv"));
 
         StatefulBeanToCsv<CDIReportStructure> beanToCsv = new StatefulBeanToCsvBuilder<CDIReportStructure>(writer).build();
 

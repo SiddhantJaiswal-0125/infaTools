@@ -52,7 +52,7 @@ public class FileDownloader {
                 ZipEntry zipEntry = zis.getNextEntry();
 
                 while (zipEntry != null) {
-                    File newFile = new File("unzipped_files/" + zipEntry.getName());
+                    File newFile = new File(Utilities.parentDirectory  +"/unzipped_files/" + zipEntry.getName());
 
 
                     FileStructure curr = new FileStructure();
@@ -79,6 +79,7 @@ public class FileDownloader {
             }
         }
         deleteFile("downloaded_file.zip");
+
 
 
 

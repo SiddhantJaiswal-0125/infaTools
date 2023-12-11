@@ -15,38 +15,7 @@ public class AppStart {
 
         String UserPODURL;
 
-        logger.debugLogger("Login Started");
-        logger.debugLogger("Please select your POD ");
-        System.out.println("1. USW1_AWS_POD1");
-        System.out.println("2. USE2_AWS_POD2");
-        System.out.println("3. USW3_AWS_POD3");
-        System.out.println("4. USE4_AWS_POD4");
-        System.out.println("5. USW5_AWS_POD5");
-        System.out.println("6. USE6_AWS_POD6");
-        System.out.println("7. USW1_1_Azure_POD7");
-        System.out.println("8. USW3_1_Azure_POD8");
-        System.out.println("9. USW1_2_GCP_POD9");
-        System.out.println("10. CAC1_AWS_POD10");
-        System.out.println("11. CAC2_AZURE_POD21");
-        System.out.println("12. USE1_ORACLE_POD22");
-        System.out.println("13. APSE1_AWS_POD14");
-        System.out.println("14. APSE2_AZURE_POD15");
-        System.out.println("15. APNE1_AZURE_POD16");
-        System.out.println("16. APNE2_AWS_POD19");
-
-
-        System.out.println("17. APAUC1_AZURE_POD17");
-        System.out.println("18. EMW1_AWS_POD11");
-
-        System.out.println("19. EMC1_AZURE_POD13");
-        System.out.println("20. UK1_AWS_POD13");
-        System.out.println("21. EMSE1_AZURE_POD18");
-        System.out.println("22. EMW2_GCP_POD20");
-
-        System.out.println();
-        System.out.println();
-        System.out.println("Please enter the number corresponding to your POD  or enter -1 if you want to exit.");
-        int podNum = sc.nextInt();
+        int podNum = LoginAPI.getPodNum();
 
         if(podNum<1 || podNum>22)
         {
@@ -86,6 +55,49 @@ public class AppStart {
 
         }
         logger.debugLogger("User has successfully logged in");
+
+
+        int option  = -1;
+
+        while(true) {
+            System.out.println("Options :");
+            System.out.println("1. Export Summary IPU Usage");
+            System.out.println("With this option : You can run a job to export summary IPU usage data for the parent organization and its linked organizations such as additional production organizations,\n" +
+                    " sub-organizations, and sandbox organizations for a specified date range.");
+            System.out.println();
+            System.out.println();
+            System.out.println("2. Export Job Level IPU Usage for a Particular Service");
+            System.out.println("With this option : For certain meters, you can run a job to export job-level details for a particular service and meter for a specified date range.");
+            System.out.println();
+            System.out.println();
+            System.out.println("  Please enter the number corresponding to your POD  or enter -1 if you want to exit.");
+            option = sc.nextInt();
+
+            System.out.println("OPTION IS "+option);
+
+
+            if (option == -1) {
+                logger.errorLogger("Please enter a valid Option Number");
+                System.exit(-1);
+
+            }
+            if(option ==1 || option == 2)
+                break;
+        }
+
+
+        if(option == 1)
+        {
+
+
+            /*Create export job*/
+        }
+
+
+        else {
+
+            /*MeterSpecific Task*/
+        }
 
        InitiatorTaskResponse taskInitiatorResponse = InitiateTask.jobLevelMeteringInitiator(userSession);
        if(taskInitiatorResponse == null || taskInitiatorResponse.getJobId() == null)
