@@ -1,7 +1,9 @@
 org\example\Modals\CDIReportStructure.class
 org\example\Modals\StatusCheckerResponse.class
 org\example\Modals\LoginResponse.class
+Services\SummaryReport\InvokeMeterLevelReport.class
 Services\FileDownloader.class
+Services\SummaryReport\InvokeSumaryReport.class
 org\example\Modals\LoginResponse$Role.class
 org\example\Modals\FileStructure.class
 Services\JobStatusChecker.class

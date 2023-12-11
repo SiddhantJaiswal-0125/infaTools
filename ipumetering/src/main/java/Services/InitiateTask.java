@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class InitiateTask {
     static Logger logger = new Logger();
-    static InitiatorTaskResponse jobLevelMeteringInitiator(LoginResponse currentSession) throws InterruptedException, IOException {
+    public static InitiatorTaskResponse jobLevelMeteringInitiator(LoginResponse currentSession, String meteringID) throws InterruptedException, IOException {
         RestTemplate restTemplate =  new RestTemplate();
         if(currentSession == null)
         {
@@ -29,7 +29,7 @@ public class InitiateTask {
             String requestBody = "{\"startDate\": \"2023-11-01T00:00:00Z\", " +
                     " \"endDate\": \"2023-12-01T00:00:00Z\", " +
                     " \"allMeters\": \"FALSE\", " +
-                    " \"meterId\":\""+Utilities.Data_Integration+"\",  "+
+                    " \"meterId\":\""+meteringID+"\",  "+
 
                     "\"callbackUrl\": \"https://MyExportJobStatus.com\"}";
 

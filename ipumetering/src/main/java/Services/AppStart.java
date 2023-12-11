@@ -1,5 +1,6 @@
 package Services;
 
+import Services.SummaryReport.InvokeMeterLevelReport;
 import Services.SummaryReport.InvokeSumaryReport;
 import org.example.App;
 import org.example.Modals.*;
@@ -100,54 +101,56 @@ public class AppStart {
 
         else {
 
+            InvokeMeterLevelReport.invokeMeterLevelReport(userSession);
+
             /*MeterSpecific Task*/
-
-            InitiatorTaskResponse taskInitiatorResponse = InitiateTask.jobLevelMeteringInitiator(userSession);
-            if(taskInitiatorResponse == null || taskInitiatorResponse.getJobId() == null)
-            {
-                taskInitiatorResponse = InitiateTask.jobLevelMeteringInitiator(userSession);
-
-                if( taskInitiatorResponse == null || taskInitiatorResponse.getJobId() == null)
-                {
-                    System.out.println("SOME ISSUE -- RETRY AFTER SOME TIME");
-                    System.exit(-1);
-                }
-            }
-
-
-            StatusCheckerResponse statusCheckerResponse =  JobStatusChecker.checkJobStatus(userSession,taskInitiatorResponse);
-            while(statusCheckerResponse!=null && statusCheckerResponse.getStatus().equalsIgnoreCase("SUCCESS")==false)
-            {
-                logger.debugLogger("Recheck the status after 5 Seconds");
-                Thread.sleep(5000);
-
-                logger.debugLogger("STATUS CHECKING AGAIN");
-                statusCheckerResponse   = JobStatusChecker.checkJobStatus(userSession,taskInitiatorResponse);
-
-            }
-
-
-            logger.debugLogger(statusCheckerResponse.getStatus());
-
-            logger.debugLogger("DOWNLOADING FILE ");
-            List<FileStructure> unzippedFiles =  FileDownloader.downloadFile(userSession, taskInitiatorResponse, statusCheckerResponse, Utilities.parentDirectory);
+//
+//            InitiatorTaskResponse taskInitiatorResponse = InitiateTask.jobLevelMeteringInitiator(userSession);
+//            if(taskInitiatorResponse == null || taskInitiatorResponse.getJobId() == null)
+//            {
+//                taskInitiatorResponse = InitiateTask.jobLevelMeteringInitiator(userSession,);
+//
+//                if( taskInitiatorResponse == null || taskInitiatorResponse.getJobId() == null)
+//                {
+//                    System.out.println("SOME ISSUE -- RETRY AFTER SOME TIME");
+//                    System.exit(-1);
+//                }
+//            }
+//
+//
+//            StatusCheckerResponse statusCheckerResponse =  JobStatusChecker.checkJobStatus(userSession,taskInitiatorResponse);
+//            while(statusCheckerResponse!=null && statusCheckerResponse.getStatus().equalsIgnoreCase("SUCCESS")==false)
+//            {
+//                logger.debugLogger("Recheck the status after 5 Seconds");
+//                Thread.sleep(5000);
+//
+//                logger.debugLogger("STATUS CHECKING AGAIN");
+//                statusCheckerResponse   = JobStatusChecker.checkJobStatus(userSession,taskInitiatorResponse);
+//
+//            }
+//
+//
+//            logger.debugLogger(statusCheckerResponse.getStatus());
+//
+//            logger.debugLogger("DOWNLOADING FILE ");
+//            List<FileStructure> unzippedFiles =  FileDownloader.downloadFile(userSession, taskInitiatorResponse, statusCheckerResponse, Utilities.parentDirectory);
 
 
             //FOR NOW WE WILL TRY FOR CDI ONLY
-            List<CDIReportStructure> report =   CSV_Manipulator.readCSV(unzippedFiles.get(0));
-
-
-
-
-//      List<CSVobject_writer> csvwriterlist = CSV_Manipulator.copyReportToCSVwriter(report);
-//      csvwriterlist = CSV_Manipulator.addExecutionTime(csvwriterlist);
-
-            logger.debugLogger("After Adding Execution Time");
-
-
-            report = CSV_Manipulator.addExecutionTime(report);
-            logger.debugLogger("creating CSV file");
-            CSV_Manipulator.CSVcreator(report);
+//            List<CDIReportStructure> report =   CSV_Manipulator.readCSV(unzippedFiles.get(0));
+//
+//
+//
+//
+////      List<CSVobject_writer> csvwriterlist = CSV_Manipulator.copyReportToCSVwriter(report);
+////      csvwriterlist = CSV_Manipulator.addExecutionTime(csvwriterlist);
+//
+//            logger.debugLogger("After Adding Execution Time");
+//
+//
+//            report = CSV_Manipulator.addExecutionTime(report);
+//            logger.debugLogger("creating CSV file");
+//            CSV_Manipulator.CSVcreator(report);
 
         }
 

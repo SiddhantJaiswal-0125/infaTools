@@ -33,8 +33,8 @@ public class InvokeSumaryReport {
         StatusCheckerResponse statusCheckerResponse =  JobStatusChecker.checkJobStatus(currentSession,response);
         while(statusCheckerResponse!=null && statusCheckerResponse.getStatus().equalsIgnoreCase("SUCCESS")==false)
         {
-            logger.debugLogger("Recheck the status after 5 Seconds");
-            Thread.sleep(5000);
+            logger.debugLogger("Recheck the status after 10 Seconds");
+            Thread.sleep(10000);
 
             logger.debugLogger("STATUS CHECKING AGAIN");
             statusCheckerResponse   = JobStatusChecker.checkJobStatus(currentSession,response);
@@ -66,7 +66,7 @@ public class InvokeSumaryReport {
     static InitiatorTaskResponse jobLevelMeteringInitiator(LoginResponse currentSession, String startDate, String endDate) throws InterruptedException, IOException {
         RestTemplate restTemplate =  new RestTemplate();
 
-        System.out.println("THIS IS CALLED ");
+
 
         if(currentSession == null)
         {
