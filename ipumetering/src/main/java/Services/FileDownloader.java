@@ -15,7 +15,8 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public class FileDownloader {
-    public static List<FileStructure> downloadFile(LoginResponse currentSession, InitiatorTaskResponse initiatorTaskResponse, StatusCheckerResponse statusCheckerResponse) throws IOException {
+    public static List<FileStructure> downloadFile(LoginResponse currentSession, InitiatorTaskResponse initiatorTaskResponse,
+                                                   StatusCheckerResponse statusCheckerResponse,String parentDir) throws IOException {
         String url = currentSession.getServerUrl()+Utilities.downloadMeteringDataURL+statusCheckerResponse.getJobId()+"/download";
 
         RestTemplate restTemplate = new RestTemplate();
@@ -52,7 +53,7 @@ public class FileDownloader {
                 ZipEntry zipEntry = zis.getNextEntry();
 
                 while (zipEntry != null) {
-                    File newFile = new File(Utilities.parentDirectory  +"/unzipped_files/" + zipEntry.getName());
+                    File newFile = new File(parentDir  +"/unzipped_files/" + zipEntry.getName());
 
 
                     FileStructure curr = new FileStructure();
