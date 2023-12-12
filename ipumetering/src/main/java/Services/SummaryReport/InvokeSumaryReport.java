@@ -31,12 +31,9 @@ public class InvokeSumaryReport {
 
         InitiatorTaskResponse response = jobLevelMeteringInitiator(currentSession, startDate, endDate);
         StatusCheckerResponse statusCheckerResponse =  JobStatusChecker.checkJobStatus(currentSession,response);
-        System.out.println("Checking Job Status : ");
+        System.out.println("Please wait:");
         while(statusCheckerResponse!=null && statusCheckerResponse.getStatus().equalsIgnoreCase("SUCCESS")==false)
         {
-//            logger.debugLogger("Recheck the status after 10 Seconds");
-//            System.out.println("");
-
             Thread.sleep(10000);
 
 //            logger.debugLogger("STATUS CHECKING AGAIN");
@@ -96,8 +93,8 @@ public class InvokeSumaryReport {
 
 
             InitiatorTaskResponse response = responseEntity.getBody();
-            System.out.println("JOB ID : "+response.getJobId());
-//            System.out.println(responseEntity);
+            System.out.println("Job has been initiated, Job Id : "+response.getJobId());
+
             return response;
 
 

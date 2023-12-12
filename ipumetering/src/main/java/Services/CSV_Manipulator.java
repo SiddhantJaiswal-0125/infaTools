@@ -94,28 +94,34 @@ public class CSV_Manipulator {
 
 
 
-            long millis =duration.toMillis() /* your duration in milliseconds here */;
-
-            long totalSeconds = millis / 1000; // convert duration from milliseconds to seconds
-
-            long hours = totalSeconds / 3600; // calculate hours
-            totalSeconds %= 3600; // update the remaining total seconds
-
-            long minutes = totalSeconds / 60; // calculate minutes
-            totalSeconds %= 60; // update the remaining total seconds
-
-
-
-
-
-            String jobDuration = "Job ran for " + (duration.toDays() > 0 ? (duration.toDays() + " Days ") : "") +
-                    (hours > 0 ? (hours + " Hours ") : "") +
-                    (minutes > 0 ? (minutes + " Minutes ") : "") +
-                    (totalSeconds > 0 ? (totalSeconds + " Seconds ") : "") ;
-
-            System.out.println(jobDuration);
-
+//            long millis =duration.toMillis() /* your duration in milliseconds here */;
 //
+//            long totalSeconds = millis / 1000; // convert duration from milliseconds to seconds
+//
+//            long hours = totalSeconds / 3600; // calculate hours
+//            totalSeconds %= 3600; // update the remaining total seconds
+//
+//            long minutes = totalSeconds / 60; // calculate minutes
+//            totalSeconds %= 60; // update the remaining total seconds
+            long durationInSeconds = duration.getSeconds();
+
+
+
+            double durationinHours = (double) 1.0000000000000000000000000000000 * ((double)durationInSeconds / 3600.0);
+
+
+
+
+
+
+//            String jobDuration = "Job ran for " + (duration.toDays() > 0 ? (duration.toDays() + " Days ") : "") +
+//                    (hours > 0 ? (hours + " Hours ") : "") +
+//                    (minutes > 0 ? (minutes + " Minutes ") : "") +
+//                    (totalSeconds > 0 ? (totalSeconds + " Seconds ") : "") ;
+
+
+            String jobDuration = durationinHours+" ";
+
             rep.setExecutionTime(jobDuration);
 
 

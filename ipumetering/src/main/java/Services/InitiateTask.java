@@ -49,7 +49,7 @@ public class InitiateTask {
 
                 InitiatorTaskResponse response = responseEntity.getBody();
 
-                System.out.println("JOB ID : " + response.getJobId());
+                System.out.println("The Job has been initiated, Job Id: " + response.getJobId());
                 return response;
 
 

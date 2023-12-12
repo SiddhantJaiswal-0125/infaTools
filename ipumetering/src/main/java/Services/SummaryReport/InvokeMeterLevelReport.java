@@ -41,27 +41,24 @@ public class InvokeMeterLevelReport {
 
             if( taskInitiatorResponse == null || taskInitiatorResponse.getJobId() == null)
             {
-                System.out.println("SOME ISSUE -- RETRY AFTER SOME TIME");
+                System.out.println("There is some issue, please go through the error message if available.");
                 System.exit(-1);
             }
         }
 
 
         StatusCheckerResponse statusCheckerResponse =  JobStatusChecker.checkJobStatus(currentSession,taskInitiatorResponse);
-        System.out.println("Checking Job Status " );
+
+        System.out.println("Please wait.");
+
         while(statusCheckerResponse!=null && statusCheckerResponse.getStatus().equalsIgnoreCase("SUCCESS")==false)
         {
-//            logger.debugLogger("Recheck the status after 5 Seconds");
-//            System.out.println("Recheck the status after 5 Seconds");
+
             Thread.sleep(5000);
             statusCheckerResponse   = JobStatusChecker.checkJobStatus(currentSession,taskInitiatorResponse);
 
         }
 
-
-//        logger.debugLogger(statusCheckerResponse.getStatus());
-//
-//        logger.debugLogger("DOWNLOADING FILE ");
         List<FileStructure> unzippedFiles =  FileDownloader.downloadFile(currentSession, taskInitiatorResponse, statusCheckerResponse, Utilities.parentDirectory);
 
 
@@ -69,8 +66,6 @@ public class InvokeMeterLevelReport {
         if(selectedService.equalsIgnoreCase(Utilities.Data_Integration))
         {
             createCSVforCDIReport(unzippedFiles);
-
-
             return;
         }
 

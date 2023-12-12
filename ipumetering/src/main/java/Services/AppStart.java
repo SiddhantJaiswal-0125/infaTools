@@ -5,6 +5,7 @@ import Services.SummaryReport.InvokeSumaryReport;
 import org.example.App;
 import org.example.Modals.*;
 
+import java.io.Console;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
@@ -13,6 +14,12 @@ public class AppStart {
     public static boolean startProject() throws InterruptedException, IOException {
 //        Logger logger = new Logger();
         Scanner sc = new Scanner(System.in);
+        Console console = System.console();
+
+        if (console == null) {
+            System.out.println("Console not available. Exiting.");
+            System.exit(1);
+        }
 
 
         String UserPODURL;
@@ -52,9 +59,11 @@ public class AppStart {
 
 //        logger.debugLogger("Please enter your password for the username : "+username)/;
         System.out.println("Please enter your password for the username : "+username);
-        password = sc.next();
+        char[] passwordArray = console.readPassword("");
 
-        LoginResponse userSession = LoginAPI.loginCall(UserPODURL, username, password);
+
+        System.out.println("Please wait, we logging in.");
+        LoginResponse userSession = LoginAPI.loginCall(UserPODURL, username, new String(passwordArray));
 
         if(userSession==null)
         {
@@ -99,7 +108,6 @@ public class AppStart {
             else
             {
                 System.out.println("Please enter a valid option");
-
             }
 
 
@@ -108,19 +116,17 @@ public class AppStart {
 
         if(option == 1)
         {
-//            logger.debugLogger("Invoking Export All data ");
+
 
             InvokeSumaryReport.invokeExportSummaryJob(userSession);
-            /*Create export job*/
-
-            System.exit(-1);
+            System.exit(0);
         }
 
 
         else {
 
             InvokeMeterLevelReport.invokeMeterLevelReport(userSession);
-            System.out.println("Files Downloaded at path"+Utilities.parentDirectory);
+            System.out.println("Files Downloaded at path : "+Utilities.parentDirectory);
 
         }
 

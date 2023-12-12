@@ -38,7 +38,7 @@ public class JobStatusChecker
 
             StatusCheckerResponse response = statusEntity.getBody();
 
-            System.out.println(response.getStatus());
+            System.out.println("Job Current Status : " +response.getStatus());
 
 
 

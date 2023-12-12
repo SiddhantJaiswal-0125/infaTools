@@ -90,21 +90,15 @@ public class FileDownloader {
 
     static  boolean deleteFile(String path)
     {
-        System.out.println("Deleting file at path : "+path);
+
         try
         {
             File f= new File(path);           //file to be delete
             if(f.delete())                      //returns Boolean value
-            {
-                System.out.println(f.getName() + " deleted");   //getting and printing the file name
-
                 return  true;
-            }
             else
-            {
-                System.out.println("failed");
             return  false;
-            }
+
         }
         catch(Exception e)
         {

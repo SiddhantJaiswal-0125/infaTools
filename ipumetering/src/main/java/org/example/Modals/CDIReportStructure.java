@@ -54,7 +54,8 @@ public class CDIReportStructure {
     private  String OBMTaskTime;
 
 
-    @CsvBindByName(column = "Execution Time")
+    @CsvBindByName(column = "Execution Time (In Hours)")
+
     private String ExecutionTime;
     public String getExecutionTime() {
         return ExecutionTime;
