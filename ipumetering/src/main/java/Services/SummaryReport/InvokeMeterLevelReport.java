@@ -12,12 +12,12 @@ public class InvokeMeterLevelReport {
 
 
     static Scanner sc = new Scanner(System.in);
-    static Logger logger = new Logger();
+
     public static void invokeMeterLevelReport(LoginResponse currentSession) throws IOException, InterruptedException {
 
 
 
-        logger.debugLogger("Invoking API to download Service Level Metering Data ");
+//        logger.debugLogger("Invoking API to download Service Level Metering Data ");
 
         String selectedService = selectService();
         if(selectedService == null || selectedService.length() ==0)
@@ -48,20 +48,20 @@ public class InvokeMeterLevelReport {
 
 
         StatusCheckerResponse statusCheckerResponse =  JobStatusChecker.checkJobStatus(currentSession,taskInitiatorResponse);
+        System.out.println("Checking Job Status " );
         while(statusCheckerResponse!=null && statusCheckerResponse.getStatus().equalsIgnoreCase("SUCCESS")==false)
         {
-            logger.debugLogger("Recheck the status after 5 Seconds");
+//            logger.debugLogger("Recheck the status after 5 Seconds");
+//            System.out.println("Recheck the status after 5 Seconds");
             Thread.sleep(5000);
-
-            logger.debugLogger("STATUS CHECKING AGAIN");
             statusCheckerResponse   = JobStatusChecker.checkJobStatus(currentSession,taskInitiatorResponse);
 
         }
 
 
-        logger.debugLogger(statusCheckerResponse.getStatus());
-
-        logger.debugLogger("DOWNLOADING FILE ");
+//        logger.debugLogger(statusCheckerResponse.getStatus());
+//
+//        logger.debugLogger("DOWNLOADING FILE ");
         List<FileStructure> unzippedFiles =  FileDownloader.downloadFile(currentSession, taskInitiatorResponse, statusCheckerResponse, Utilities.parentDirectory);
 
 
@@ -69,6 +69,8 @@ public class InvokeMeterLevelReport {
         if(selectedService.equalsIgnoreCase(Utilities.Data_Integration))
         {
             createCSVforCDIReport(unzippedFiles);
+
+
             return;
         }
 
@@ -127,17 +129,8 @@ public class InvokeMeterLevelReport {
     static void createCSVforCDIReport(List<FileStructure> unzippedFiles) throws IOException {
         List<CDIReportStructure> report =   CSV_Manipulator.readCSV(unzippedFiles.get(0));
 
-
-
-
-//      List<CSVobject_writer> csvwriterlist = CSV_Manipulator.copyReportToCSVwriter(report);
-//      csvwriterlist = CSV_Manipulator.addExecutionTime(csvwriterlist);
-
-        logger.debugLogger("After Adding Execution Time");
-
-
         report = CSV_Manipulator.addExecutionTime(report);
-        logger.debugLogger("creating CSV file");
+
         CSV_Manipulator.CSVcreator(report);
 
     }

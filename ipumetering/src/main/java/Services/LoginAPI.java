@@ -10,38 +10,79 @@ import java.util.Scanner;
 
 public class LoginAPI {
 
+//    static Logger logger = new Logger();
+//    static  int getPodNum2()
+//    {
+//        Scanner sc = new Scanner(System.in);
+//
+//        logger.debugLogger("Login Started");
+//        logger.debugLogger("Please select your POD ");
+//        System.out.println("1. USW1_AWS_POD1");
+//        System.out.println("2. USE2_AWS_POD2");
+//        System.out.println("3. USW3_AWS_POD3");
+//        System.out.println("4. USE4_AWS_POD4");
+//        System.out.println("5. USW5_AWS_POD5");
+//        System.out.println("6. USE6_AWS_POD6");
+//        System.out.println("7. USW1_1_Azure_POD7");
+//        System.out.println("8. USW3_1_Azure_POD8");
+//        System.out.println("9. USW1_2_GCP_POD9");
+//        System.out.println("10. CAC1_AWS_POD10");
+//        System.out.println("11. CAC2_AZURE_POD21");
+//        System.out.println("12. USE1_ORACLE_POD22");
+//        System.out.println("13. APSE1_AWS_POD14");
+//        System.out.println("14. APSE2_AZURE_POD15");
+//        System.out.println("15. APNE1_AZURE_POD16");
+//        System.out.println("16. APNE2_AWS_POD19");
+//
+//
+//        System.out.println("17. APAUC1_AZURE_POD17");
+//        System.out.println("18. EMW1_AWS_POD11");
+//
+//        System.out.println("19. EMC1_AZURE_POD13");
+//        System.out.println("20. UK1_AWS_POD13");
+//        System.out.println("21. EMSE1_AZURE_POD18");
+//        System.out.println("22. EMW2_GCP_POD20");
+//
+//        System.out.println();
+//        System.out.println();
+//        System.out.println("Please enter the number corresponding to your POD  or enter -1 if you want to exit.");
+//        int podNum = sc.nextInt();
+//
+//        return podNum;
+//    }
 
     static  int getPodNum()
     {
         Scanner sc = new Scanner(System.in);
 
-        logger.debugLogger("Login Started");
-        logger.debugLogger("Please select your POD ");
-        System.out.println("1. USW1_AWS_POD1");
-        System.out.println("2. USE2_AWS_POD2");
-        System.out.println("3. USW3_AWS_POD3");
-        System.out.println("4. USE4_AWS_POD4");
-        System.out.println("5. USW5_AWS_POD5");
-        System.out.println("6. USE6_AWS_POD6");
-        System.out.println("7. USW1_1_Azure_POD7");
-        System.out.println("8. USW3_1_Azure_POD8");
-        System.out.println("9. USW1_2_GCP_POD9");
-        System.out.println("10. CAC1_AWS_POD10");
-        System.out.println("11. CAC2_AZURE_POD21");
-        System.out.println("12. USE1_ORACLE_POD22");
-        System.out.println("13. APSE1_AWS_POD14");
-        System.out.println("14. APSE2_AZURE_POD15");
-        System.out.println("15. APNE1_AZURE_POD16");
-        System.out.println("16. APNE2_AWS_POD19");
+        System.out.println("Started");
+//        logger.debugLogger("Please select your POD ");
+        System.out.println("Please select your POD ");
+        System.out.println("1. NA WEST 1 : "+Utilities.USW1_AWS_POD1_LoginURL);
+        System.out.println("2. NA EAST 2 : "+Utilities.USE2_AWS_POD2_LoginURL);
+        System.out.println("3. US WEST 3 : "+Utilities.USW3_AWS_POD3_LoginURL);
+        System.out.println("4. US EAST 4 : "+Utilities.USE4_AWS_POD4_LoginURL);
+        System.out.println("5. US WEST 5 : "+Utilities.USW5_AWS_POD5_LoginURL);
+        System.out.println("6. US EAST 6 : "+Utilities.USE6_AWS_POD6_LoginURL );
+        System.out.println("7. US WEST 1 AZURE   : "+Utilities.USW1_1_Azure_POD7_LoginURL);
+        System.out.println("8. US WEST 3 AZURE   : "+Utilities.USW3_1_Azure_POD8_LoginURL);
+        System.out.println("9. US WEST 1 GCP     : "+Utilities.USW1_2_GCP_POD9_LoginURL);
+        System.out.println("10. CANADA CENTRAL 1 : "+Utilities.CAC1_AWS_POD10_LoginURL);
+        System.out.println("11. CANADA CENTRAL 1 AZURE : "+Utilities.CAC2_AZURE_POD21_LoginURL);
+        System.out.println("12. US EAST 1 OCI  : "+Utilities.USE1_ORACLE_POD22_LoginURL );
+        System.out.println("13. AP SOUTHEAST 1 : "+Utilities.APSE1_AWS_POD14_LoginURL);
+        System.out.println("14. AP SOUTHEAST AZURE : "+Utilities.APSE2_AZURE_POD15_LoginURL);
+        System.out.println("15. AP NORTHEAST 1 AZURE : "+Utilities.APNE1_AZURE_POD16_LoginURL);
+        System.out.println("16. AP NORTHEAST 2 : "+Utilities.APNE2_AWS_POD19_LoginURL);
 
 
-        System.out.println("17. APAUC1_AZURE_POD17");
-        System.out.println("18. EMW1_AWS_POD11");
+        System.out.println("17. AUSTRALIA AZURE : "+Utilities.APAUC1_AZURE_POD17_LoginURL);
+        System.out.println("18. EM WEST 1 : "+Utilities.EMW1_AWS_POD11_LoginURL);
 
-        System.out.println("19. EMC1_AZURE_POD13");
-        System.out.println("20. UK1_AWS_POD13");
-        System.out.println("21. EMSE1_AZURE_POD18");
-        System.out.println("22. EMW2_GCP_POD20");
+        System.out.println("19. EM CENTRAL 1 AZURE : "+Utilities.EMC1_AZURE_POD12_LoginURL);
+        System.out.println("20. UK : "+Utilities.UK1_AWS_POD13_LoginURL);
+        System.out.println("21. EM SOUTHEAST 1 AZURE : "+Utilities.EMSE1_AZURE_POD18_LoginURL);
+        System.out.println("22. EM WEST 2 GCP : "+Utilities.EMW2_GCP_POD20_LoginURL);
 
         System.out.println();
         System.out.println();
@@ -50,7 +91,7 @@ public class LoginAPI {
 
         return podNum;
     }
-   static Logger logger = new Logger();
+
    public static LoginResponse loginCall(String podUrl, String username, String password)
     {
         RestTemplate restTemplate =  new RestTemplate();
@@ -80,7 +121,7 @@ public class LoginAPI {
 
         catch (RestClientException ex)
         {
-            logger.errorLogger(ex.getMessage());
+            System.err.println(ex.getMessage());
         }
         return null;
     }

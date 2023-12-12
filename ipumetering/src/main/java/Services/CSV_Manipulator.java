@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CSV_Manipulator {
-    static Logger logger = new Logger();
+
 
 //    public static  List<CDIReportStructure> copyReportToCSVwriter(List<CDIReportStructure> rep) {
 //        List<CDIReportStructure> res = new ArrayList<>();

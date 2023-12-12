@@ -10,13 +10,15 @@ import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 
 public class InitiateTask {
-    static Logger logger = new Logger();
+//    static Logger logger = new Logger();
     public static InitiatorTaskResponse jobLevelMeteringInitiator(LoginResponse currentSession, String meteringID,String startDate, String endDate) throws InterruptedException, IOException {
         RestTemplate restTemplate =  new RestTemplate();
+
         if(currentSession == null)
         {
-            logger.errorLogger("Session is Invalid");
+//            logger.errorLogger("Session is Invalid");
 
+            System.err.println("Session-Token is Invalid");
             AppStart.startProject();
 
         }
@@ -59,9 +61,10 @@ public class InitiateTask {
         catch (RestClientException ex)
         {
 
-
-       logger.errorLogger("Please check the error log message for more information.");
-            logger.errorLogger(ex.getMessage());
+            System.err.println("Please check the error log message for more information.");
+//       logger.errorLogger("Please check the error log message for more information.");
+//            logger.errorLogger(ex.getMessage());
+            System.err.println(ex.getMessage());
             return null;
         }
     }

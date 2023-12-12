@@ -12,14 +12,14 @@ import java.io.IOException;
 
 public class JobStatusChecker
 {
-    static Logger logger = new Logger();
+
 
 
     public static StatusCheckerResponse checkJobStatus(LoginResponse currentSession, InitiatorTaskResponse initiatorTaskResponse) throws InterruptedException, IOException {
         RestTemplate restTemplate =  new RestTemplate();
         if(currentSession == null)
         {
-            logger.errorLogger("Session is Invalid");
+            System.err.println("Session-Token is Invalid");
             AppStart.startProject();
         }
         try
@@ -54,7 +54,7 @@ public class JobStatusChecker
 
         catch (RestClientException ex)
         {
-            logger.errorLogger(ex.getMessage());
+            System.err.println(ex.getMessage());
             return null;
         }
     }

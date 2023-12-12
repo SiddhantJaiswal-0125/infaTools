@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InvokeSumaryReport {
-    static Logger logger = new Logger();
+//    static Logger logger = new Logger();
 
     public static void invokeExportSummaryJob(LoginResponse currentSession) throws IOException, InterruptedException {
 
@@ -31,18 +31,21 @@ public class InvokeSumaryReport {
 
         InitiatorTaskResponse response = jobLevelMeteringInitiator(currentSession, startDate, endDate);
         StatusCheckerResponse statusCheckerResponse =  JobStatusChecker.checkJobStatus(currentSession,response);
+        System.out.println("Checking Job Status : ");
         while(statusCheckerResponse!=null && statusCheckerResponse.getStatus().equalsIgnoreCase("SUCCESS")==false)
         {
-            logger.debugLogger("Recheck the status after 10 Seconds");
+//            logger.debugLogger("Recheck the status after 10 Seconds");
+//            System.out.println("");
+
             Thread.sleep(10000);
 
-            logger.debugLogger("STATUS CHECKING AGAIN");
+//            logger.debugLogger("STATUS CHECKING AGAIN");
             statusCheckerResponse   = JobStatusChecker.checkJobStatus(currentSession,response);
 
         }
-        logger.debugLogger("Invoke Export Summary  status response "+ statusCheckerResponse.getStatus());
+//        logger.debugLogger("Invoke Export Summary  status response "+ statusCheckerResponse.getStatus());
 
-        logger.debugLogger("DOWNLOADING FILE ");
+//        logger.debugLogger("DOWNLOADING FILE ");
         List<FileStructure> unzippedFiles =  FileDownloader.downloadFile(currentSession, response,
                 statusCheckerResponse, Utilities.parentDirectory+"/CompleteExport/");
 
@@ -70,7 +73,8 @@ public class InvokeSumaryReport {
 
         if(currentSession == null)
         {
-            logger.errorLogger("Session is Invalid");
+//            logger.errorLogger("Session is Invalid");
+            System.err.println("Session - Token is Invalid");
 
             AppStart.startProject();
 
@@ -103,7 +107,7 @@ public class InvokeSumaryReport {
         }
         catch (RestClientException ex)
         {
-            logger.errorLogger(ex.getMessage());
+            System.err.println(ex.getMessage());
             return null;
         }
 }

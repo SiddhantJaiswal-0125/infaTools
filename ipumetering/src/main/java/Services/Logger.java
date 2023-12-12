@@ -1,6 +1,6 @@
 package Services;
 
-public class Logger {
+ class Logger1 {
    public  void debugLogger(String msg)
     {
         System.out.println("--- [DEBUG]----- "+msg+" -----------");
