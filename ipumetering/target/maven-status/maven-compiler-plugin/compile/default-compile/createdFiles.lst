@@ -7,7 +7,7 @@ Services\SummaryReport\InvokeSumaryReport.class
 org\example\Modals\LoginResponse$Role.class
 org\example\Modals\FileStructure.class
 Services\JobStatusChecker.class
-Services\Logger.class
+Services\Logger1.class
 Services\Utilities.class
 Services\InitiateTask.class
 Services\CSV_Manipulator.class
