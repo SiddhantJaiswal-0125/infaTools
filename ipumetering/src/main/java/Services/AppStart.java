@@ -7,6 +7,7 @@ import org.example.Modals.*;
 
 import java.io.Console;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Scanner;
 
@@ -36,7 +37,7 @@ public class AppStart {
         {
 //            logger.errorLogger("Please enter a valid POD number");
             System.out.println("Please enter a valid POD Number");
-            System.exit(-1);
+         startProject();
         }
 
 
@@ -92,7 +93,7 @@ public class AppStart {
             System.out.println("With this option : For certain meters, you can run a job to export job-level details for a particular service and meter for a specified date range.");
             System.out.println();
             System.out.println();
-            System.out.println("  Please enter the number corresponding to your POD  or enter -1 if you want to exit.");
+            System.out.println("Please input the desired option or enter -1 to exit");
             option = sc.nextInt();
 
 
@@ -119,14 +120,63 @@ public class AppStart {
 
 
             InvokeSumaryReport.invokeExportSummaryJob(userSession);
-            System.exit(0);
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println("Please enter the option to continue : ");
+            System.out.println("1. Export Job Level IPU Usage for a Particular Service ");
+            System.out.println("Enter -1 to exit ");
+            int input = sc.nextInt();
+            if(input == 1){
+                InvokeMeterLevelReport.invokeMeterLevelReport(userSession);
+                System.out.println("Files Downloaded at path : "+Utilities.parentDirectory);
+
+                System.out.println("Thanks, Bye!");
+                System.exit(0);
+            }
+            else if (input == -1)
+            {
+                System.out.println("Thanks, Bye!");
+                System.exit(0);
+            }
+            else
+                System.out.println("Enter a valid option");
+
         }
 
-
         else {
-
             InvokeMeterLevelReport.invokeMeterLevelReport(userSession);
             System.out.println("Files Downloaded at path : "+Utilities.parentDirectory);
+
+
+
+
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+
+
+            System.out.println("Please enter the option to continue : ");
+            System.out.println("1. Export Summary IPU Usage");
+            System.out.println("With this option : You can run a job to export summary IPU usage data for the parent organization and its linked organizations such as additional production organizations,\n" +
+                    " sub-organizations, and sandbox organizations for a specified date range.");
+            System.out.println("Enter -1 to exit ");
+            int input = sc.nextInt();
+            if(input == 1){
+                InvokeSumaryReport.invokeExportSummaryJob(userSession);
+                System.out.println("Thanks, Bye!");
+                System.exit(0);
+            }
+            else if (input == -1)
+            {
+                System.out.println("Thanks, Bye!");
+                System.exit(0);
+            }
+            else
+                System.out.println("Enter a valid option");
+
 
         }
 

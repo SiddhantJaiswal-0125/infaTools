@@ -20,13 +20,16 @@ public class InvokeSumaryReport {
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Please the Start Date and End Date in the Format \" YYYY-MM-DDTHH:MM:SSZ \"");
-        System.out.println("Note : YYYY-MM-DDTHH:MM:SSZ  this format is important, example : 2022-08-12T00:00:00Z " );
+        System.out.println("Please the Start Date and End Date in the Format \" YYYY-MM-DD \"");
+        System.out.println("Note : YYYY-MM-DD  this format is important, example : 2022-08-12" );
         System.out.println();
         System.out.println("Please enter Start Date ");
         String startDate = sc.next();
+        startDate =  startDate+"T00:00:00Z";
         System.out.println("Please enter End Date ");
         String endDate = sc.next();
+        endDate = endDate+"T00:00:00Z";
+
 
 
         InitiatorTaskResponse response = jobLevelMeteringInitiator(currentSession, startDate, endDate);
