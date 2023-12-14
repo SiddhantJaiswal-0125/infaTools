@@ -71,9 +71,12 @@ public class AppStart {
           boolean started =  AppStart.startProject();
           if(started == false)
           {
-//              logger.errorLogger("Sorry Unable to start for now, please try after sometime");
-              System.out.println("Sorry unable to start for now, please try after sometime");
-              System.exit(-1);
+
+              System.out.println("Sorry, there was some issue, please try again.\n If the issue still persists please check after some time");
+
+              AppStart.startProject();
+
+
           }
 
         }
@@ -122,6 +125,7 @@ public class AppStart {
             InvokeSumaryReport.invokeExportSummaryJob(userSession);
             System.out.println();
             System.out.println();
+            System.out.println("---------------------------------------------------------------------------------------------------");
             System.out.println();
             System.out.println();
             System.out.println("Please enter the option to continue : ");
@@ -154,6 +158,7 @@ public class AppStart {
 
             System.out.println();
             System.out.println();
+            System.out.println("---------------------------------------------------------------------------------------------------");
             System.out.println();
             System.out.println();
 

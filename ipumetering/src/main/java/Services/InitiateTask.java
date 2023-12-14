@@ -29,11 +29,7 @@ public class InitiateTask {
 
             headers.set("INFA-SESSION-ID", currentSession.getIcSessionId());
 
-            String requestBody2 = "{\"startDate\": \"2023-11-01T00:00:00Z\", " +
-                    " \"endDate\": \"2023-12-01T00:00:00Z\", " +
-                    " \"allMeters\": \"FALSE\", " +
-                    " \"meterId\":\""+meteringID+"\",  "+
-                    "\"callbackUrl\": \"https://MyExportJobStatus.com\"}";
+
             String requestBody = "{\"startDate\": \""+startDate+"\", " +
                     " \"endDate\": \""+endDate+"\", " +
                     " \"allMeters\": \"FALSE\", " +

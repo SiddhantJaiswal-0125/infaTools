@@ -16,7 +16,7 @@ public class LoginAPI {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Started");
-//        logger.debugLogger("Please select your POD ");
+
         System.out.println("Please select your POD ");
         System.out.println("1. NA WEST 1 : "+Utilities.USW1_AWS_POD1_LoginURL);
         System.out.println("2. NA EAST 2 : "+Utilities.USE2_AWS_POD2_LoginURL);

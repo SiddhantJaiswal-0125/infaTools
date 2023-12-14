@@ -18,6 +18,12 @@ public class InvokeMeterLevelReport {
 
 
 //        logger.debugLogger("Invoking API to download Service Level Metering Data ");
+        if(currentSession == null)
+        {
+            System.err.println("Session Expired.");
+            AppStart.startProject();
+
+        }
 
         String selectedService = selectService();
         if(selectedService == null || selectedService.length() ==0)
@@ -43,8 +49,8 @@ public class InvokeMeterLevelReport {
 
             if( taskInitiatorResponse == null || taskInitiatorResponse.getJobId() == null)
             {
-                System.out.println("There is some issue, please go through the error message if available.");
-                System.exit(-1);
+
+                invokeMeterLevelReport(currentSession);
             }
         }
 
