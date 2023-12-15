@@ -37,6 +37,8 @@ public class AppStart {
         {
 //            logger.errorLogger("Please enter a valid POD number");
             System.out.println("Please enter a valid POD Number");
+            System.out.println();
+            System.out.println();
          startProject();
         }
 
@@ -73,9 +75,9 @@ public class AppStart {
           {
 
               System.out.println("Sorry, there was some issue, please try again.\n If the issue still persists please check after some time");
-
+              System.out.println();
+              System.out.println();
               AppStart.startProject();
-
 
           }
 
@@ -112,6 +114,8 @@ public class AppStart {
             else
             {
                 System.out.println("Please enter a valid option");
+                System.out.println();
+                System.out.println();
             }
 
 
@@ -142,11 +146,15 @@ public class AppStart {
             else if (input == -1)
             {
                 System.out.println("Thanks, Bye!");
+
+
                 System.exit(0);
             }
-            else
+            else {
                 System.out.println("Enter a valid option");
-
+                System.out.println();
+                System.out.println();
+            }
         }
 
         else {
