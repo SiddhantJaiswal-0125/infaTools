@@ -47,7 +47,7 @@ public class InvokeMeterLevelReport {
         startDate = startDate+"T00:00:00Z";
         System.out.println("Please enter End Date ");
         String endDate = sc.next();
-       validDate =  DateHelper.dateChecker(startDate);
+       validDate =  DateHelper.dateChecker(endDate);
         if(validDate == false)
         {
             invokeMeterLevelReport(currentSession);

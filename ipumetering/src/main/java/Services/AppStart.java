@@ -136,6 +136,8 @@ public class AppStart {
             System.out.println();
             System.out.println("Please enter the option to continue : ");
             System.out.println("1. Export Job Level IPU Usage for a Particular Service ");
+            System.out.println();
+            System.out.println();
             System.out.println("Enter -1 to exit ");
             int input = sc.nextInt();
             if(input == 1){
@@ -177,6 +179,8 @@ public class AppStart {
             System.out.println("1. Export Summary IPU Usage");
             System.out.println("With this option : You can run a job to export summary IPU usage data for the parent organization and its linked organizations such as additional production organizations,\n" +
                     " sub-organizations, and sandbox organizations for a specified date range.");
+            System.out.println();
+            System.out.println();
             System.out.println("Enter -1 to exit ");
             int input = sc.nextInt();
             if(input == 1){
