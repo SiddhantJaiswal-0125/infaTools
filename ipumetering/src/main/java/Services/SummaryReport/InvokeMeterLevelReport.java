@@ -37,21 +37,27 @@ public class InvokeMeterLevelReport {
         System.out.println();
         System.out.println("Please enter Start Date ");
         String startDate = sc.next();
+        Boolean validDate = DateHelper.dateChecker(startDate);
+
+        if(validDate == false)
+        {
+            invokeMeterLevelReport(currentSession);
+            return;
+        }
         startDate = startDate+"T00:00:00Z";
         System.out.println("Please enter End Date ");
         String endDate = sc.next();
-
+       validDate =  DateHelper.dateChecker(startDate);
+        if(validDate == false)
+        {
+            invokeMeterLevelReport(currentSession);
+            return;
+        }
         endDate = endDate+"T00:00:00Z";
         InitiatorTaskResponse taskInitiatorResponse = InitiateTask.jobLevelMeteringInitiator(currentSession, selectedService, startDate, endDate);
         if(taskInitiatorResponse == null || taskInitiatorResponse.getJobId() == null)
         {
-            taskInitiatorResponse = InitiateTask.jobLevelMeteringInitiator(currentSession, selectedService, startDate, endDate);
-
-            if( taskInitiatorResponse == null || taskInitiatorResponse.getJobId() == null)
-            {
-
-                invokeMeterLevelReport(currentSession);
-            }
+            invokeMeterLevelReport(currentSession);
         }
 
 
@@ -78,6 +84,8 @@ public class InvokeMeterLevelReport {
         }
 
     }
+
+
     static String selectService()
     {
 

@@ -8,6 +8,7 @@ import org.example.Modals.*;
 import java.io.Console;
 import java.io.IOException;
 import java.sql.SQLOutput;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,17 +16,14 @@ public class AppStart {
     public static boolean startProject() throws InterruptedException, IOException {
 //        Logger logger = new Logger();
         Scanner sc = new Scanner(System.in);
-        Console console = System.console();
 
-        if (console == null) {
-            System.out.println("Console not available. Exiting.");
-            System.exit(1);
-        }
 
 
         String UserPODURL;
 
         int podNum = LoginAPI.getPodNum();
+        Console console = System.console();
+
 
         if (podNum == -1) {
 //                logger.errorLogger("Please enter a valid Option Number");
@@ -36,7 +34,7 @@ public class AppStart {
         if(podNum<1 || podNum>22)
         {
 //            logger.errorLogger("Please enter a valid POD number");
-            System.out.println("Please enter a valid POD Number");
+            System.err.println("Please enter a valid POD Number");
             System.out.println();
             System.out.println();
          startProject();
@@ -62,11 +60,15 @@ public class AppStart {
 
 //        logger.debugLogger("Please enter your password for the username : "+username)/;
         System.out.println("Please enter your password for the username : "+username);
-        char[] passwordArray = console.readPassword("");
-
+        if(console!=null) {
+            char[] passwordArray = console.readPassword("");
+            password = new String(passwordArray);
+        }
+        else
+            password =sc.next();
 
         System.out.println("Please wait, we logging in.");
-        LoginResponse userSession = LoginAPI.loginCall(UserPODURL, username, new String(passwordArray));
+        LoginResponse userSession = LoginAPI.loginCall(UserPODURL, username, password);
 
         if(userSession==null)
         {
@@ -74,7 +76,7 @@ public class AppStart {
           if(started == false)
           {
 
-              System.out.println("Sorry, there was some issue, please try again.\n If the issue still persists please check after some time");
+              System.err.println("Sorry, there was some issue, please try again.\n If the issue still persists please check after some time");
               System.out.println();
               System.out.println();
               AppStart.startProject();
@@ -82,7 +84,7 @@ public class AppStart {
           }
 
         }
-//        logger.debugLogger("User has successfully logged in");
+
 
 
         int option  = -1;
@@ -113,7 +115,7 @@ public class AppStart {
             }
             else
             {
-                System.out.println("Please enter a valid option");
+                System.err.println("Please enter a valid option");
                 System.out.println();
                 System.out.println();
             }
@@ -151,7 +153,7 @@ public class AppStart {
                 System.exit(0);
             }
             else {
-                System.out.println("Enter a valid option");
+                System.err.println("Enter a valid option");
                 System.out.println();
                 System.out.println();
             }
@@ -188,7 +190,7 @@ public class AppStart {
                 System.exit(0);
             }
             else
-                System.out.println("Enter a valid option");
+                System.err.println("Enter a valid option");
 
 
         }
@@ -197,4 +199,5 @@ public class AppStart {
 
         return true;
     }
+
 }

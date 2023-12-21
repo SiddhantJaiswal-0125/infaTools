@@ -57,10 +57,16 @@ public class InitiateTask {
         catch (RestClientException ex)
         {
 
+            System.out.println("---------------------------------------------------------------------------------------------------");
+            System.out.println();
             System.err.println("Please check the error log message for more information.");
-//       logger.errorLogger("Please check the error log message for more information.");
-//            logger.errorLogger(ex.getMessage());
+
+            System.out.println();
+
             System.err.println(ex.getMessage());
+            System.out.println();
+            System.out.println("---------------------------------------------------------------------------------------------------");
+
             return null;
         }
     }

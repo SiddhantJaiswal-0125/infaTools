@@ -25,12 +25,26 @@ public class InvokeSumaryReport {
         System.out.println();
         System.out.println("Please enter Start Date ");
         String startDate = sc.next();
+
+        boolean validDate = DateHelper.dateChecker(startDate);
+        if(validDate == false)
+        {
+            invokeExportSummaryJob(currentSession);
+            return;
+        }
         startDate =  startDate+"T00:00:00Z";
         System.out.println("Please enter End Date ");
         String endDate = sc.next();
+        validDate = DateHelper.dateChecker(endDate);
+
         endDate = endDate+"T00:00:00Z";
+if(validDate == false)
+{
+    invokeExportSummaryJob(currentSession);
+    return;
 
 
+}
 
         InitiatorTaskResponse response = jobLevelMeteringInitiator(currentSession, startDate, endDate);
         StatusCheckerResponse statusCheckerResponse =  JobStatusChecker.checkJobStatus(currentSession,response);
