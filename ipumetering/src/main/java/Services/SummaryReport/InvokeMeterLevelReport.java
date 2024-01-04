@@ -32,58 +32,63 @@ public class InvokeMeterLevelReport {
             return;
         }
 
-        System.out.println("Please the Start Date and End Date in the Format \" YYYY-MM-DD\"");
-        System.out.println("Note : YYYY-MM-DD  this format is important, example : 2022-08-12" );
-        System.out.println();
-        System.out.println("Please enter Start Date ");
-        String startDate = sc.next();
-        Boolean validDate = DateHelper.dateChecker(startDate);
+        invokeServiceLevelReport(currentSession, selectedService);
 
-        if(validDate == false)
-        {
-            invokeMeterLevelReport(currentSession);
-            return;
-        }
-        startDate = startDate+"T00:00:00Z";
-        System.out.println("Please enter End Date ");
-        String endDate = sc.next();
-       validDate =  DateHelper.dateChecker(endDate);
-        if(validDate == false)
-        {
-            invokeMeterLevelReport(currentSession);
-            return;
-        }
-        endDate = endDate+"T00:00:00Z";
-        InitiatorTaskResponse taskInitiatorResponse = InitiateTask.jobLevelMeteringInitiator(currentSession, selectedService, startDate, endDate);
-        if(taskInitiatorResponse == null || taskInitiatorResponse.getJobId() == null)
-        {
-            invokeMeterLevelReport(currentSession);
-        }
-
-
-        StatusCheckerResponse statusCheckerResponse =  JobStatusChecker.checkJobStatus(currentSession,taskInitiatorResponse);
-
-        System.out.println("Please wait.");
-
-        while(statusCheckerResponse!=null && statusCheckerResponse.getStatus().equalsIgnoreCase("SUCCESS")==false)
-        {
-
-            Thread.sleep(5000);
-            statusCheckerResponse   = JobStatusChecker.checkJobStatus(currentSession,taskInitiatorResponse);
-
-        }
-
-        List<FileStructure> unzippedFiles =  FileDownloader.downloadFile(currentSession, taskInitiatorResponse, statusCheckerResponse, Utilities.parentDirectory);
-
-
-
-        if(selectedService.equalsIgnoreCase(Utilities.Data_Integration))
-        {
-            createCSVforCDIReport(unzippedFiles);
-            return;
-        }
 
     }
+
+
+     static void invokeServiceLevelReport(LoginResponse currentSession , String selectedService) throws IOException, InterruptedException { System.out.println("Please the Start Date and End Date in the Format \" YYYY-MM-DD\"");
+         System.out.println("Note : YYYY-MM-DD  this format is important, example : 2022-08-12" );
+         System.out.println();
+         System.out.println("Please enter Start Date ");
+         String startDate = sc.next();
+         Boolean validDate = DateHelper.dateChecker(startDate);
+
+         if(validDate == false)
+         {
+             invokeServiceLevelReport(currentSession, selectedService);
+             return;
+         }
+         startDate = startDate+"T00:00:00Z";
+         System.out.println("Please enter End Date ");
+         String endDate = sc.next();
+         validDate =  DateHelper.dateChecker(endDate);
+         if(validDate == false)
+         {
+             invokeServiceLevelReport(currentSession, selectedService);
+             return;
+         }
+         endDate = endDate+"T00:00:00Z";
+         InitiatorTaskResponse taskInitiatorResponse = InitiateTask.jobLevelMeteringInitiator(currentSession, selectedService, startDate, endDate);
+         if(taskInitiatorResponse == null || taskInitiatorResponse.getJobId() == null)
+         {
+             invokeMeterLevelReport(currentSession);
+         }
+
+
+         StatusCheckerResponse statusCheckerResponse =  JobStatusChecker.checkJobStatus(currentSession,taskInitiatorResponse);
+
+         System.out.println("Please wait.");
+
+         while(statusCheckerResponse!=null && statusCheckerResponse.getStatus().equalsIgnoreCase("SUCCESS")==false)
+         {
+
+             Thread.sleep(5000);
+             statusCheckerResponse   = JobStatusChecker.checkJobStatus(currentSession,taskInitiatorResponse);
+
+         }
+
+         List<FileStructure> unzippedFiles =  FileDownloader.downloadFile(currentSession, taskInitiatorResponse, statusCheckerResponse, Utilities.parentDirectory);
+
+
+
+         if(selectedService.equalsIgnoreCase(Utilities.Data_Integration))
+         {
+             createCSVforCDIReport(unzippedFiles);
+             return;
+         }
+     }
 
 
     static String selectService()
