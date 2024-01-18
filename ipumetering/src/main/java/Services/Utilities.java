@@ -19,6 +19,7 @@ public class Utilities {
     public static final String  Mass_Ingestion_Streaming	="hr7GsCwFFmyfvfZQFn8v81";
     public static final String  Mass_Ingestion_Database	="24WXkCWzeSHjFlQvLPDegF";
     public static final String Mass_Ingestion_Files	="lCwc4CfL7EEhv9773egFC8";
+    public static final String  CDGC	="xQ7fB0n3HtM8JlZk2W6sX1";
     public static final String Mass_Ingestion_Application="i3H6LcmMIYjhUKa9VCi7CI";
     public static final String    Advanced_Pushdown_Optimization	="dMN0VeTW4cThHyPovp4GEX";
     public static final String Data_Integration_CDC = "0sDTANKFZBSbqjzKaXKlmB";

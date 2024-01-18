@@ -1,6 +1,7 @@
 package org.example.Modals;
 
 public class FileStructure {
+
     private String fileName;
     private String filePath;
 
