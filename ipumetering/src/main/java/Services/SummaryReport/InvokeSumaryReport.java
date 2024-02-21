@@ -50,13 +50,11 @@ public class InvokeSumaryReport {
         while (statusCheckerResponse != null && statusCheckerResponse.getStatus().equalsIgnoreCase("SUCCESS") == false) {
             Thread.sleep(10000);
 
-//            logger.debugLogger("STATUS CHECKING AGAIN");
+
             statusCheckerResponse = JobStatusChecker.checkJobStatus(currentSession, response);
 
         }
-//        logger.debugLogger("Invoke Export Summary  status response "+ statusCheckerResponse.getStatus());
 
-//        logger.debugLogger("DOWNLOADING FILE ");
         List<FileStructure> unzippedFiles = FileDownloader.downloadFile(currentSession, response,
                 statusCheckerResponse, Utilities.parentDirectory + "/CompleteExport/");
 

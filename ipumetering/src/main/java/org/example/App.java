@@ -19,6 +19,7 @@ import java.util.Scanner;
 
 public class App {
 
+
     public static void main(String[] args) throws InterruptedException, IOException {
         AppStart.startProject();
 

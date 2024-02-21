@@ -36,35 +36,36 @@ public class Utilities {
     public static final String USE4_AWS_POD4_LoginURL = "https://dm-us.informaticacloud.com/";
     public static final String USW5_AWS_POD5_LoginURL = "https://dm-us.informaticacloud.com/";
     public static final String USE6_AWS_POD6_LoginURL = "https://dm-us.informaticacloud.com/";
-    public static final String USW1_1_Azure_POD7_LoginURL = "https://dm1-us.informaticacloud.com";
-    public static final String USW3_1_Azure_POD8_LoginURL = "https://dm1-us.informaticacloud.com";
-    public static final String USW1_2_GCP_POD9_LoginURL = "https://dm2-us.informaticacloud.com";
-    public static final String CAC1_AWS_POD10_LoginURL = "https://dm-na.informaticacloud.com";
-    public static final String CAC2_AZURE_POD21_LoginURL = "https://dm1-ca.informaticacloud.com";
+    public static final String USW1_1_Azure_POD7_LoginURL = "https://dm1-us.informaticacloud.com/";
+    public static final String USW3_1_Azure_POD8_LoginURL = "https://dm1-us.informaticacloud.com/";
+    public static final String USW1_2_GCP_POD9_LoginURL = "https://dm2-us.informaticacloud.com/";
+    public static final String CAC1_AWS_POD10_LoginURL = "https://dm-na.informaticacloud.com/";
+    public static final String CAC2_AZURE_POD21_LoginURL = "https://dm1-ca.informaticacloud.com/";
     public static final String USE1_ORACLE_POD22_LoginURL = "https://dm3-us.informaticacloud.com/";
 
 
     /*    APJ PODS    */
-    public static final String APSE1_AWS_POD14_LoginURL = "https://dm-ap.informaticacloud.com";
+    public static final String APSE1_AWS_POD14_LoginURL = "https://dm-ap.informaticacloud.com/";
 
 
-    public static final String AP_SOUTHEAST_AZURE = "https://dm1-apse.informaticacloud.com";
-    public static final String AP_NORTHEAST_1_AZURE_LoginURL = "https://dm1-ap.informaticacloud.com";
+    public static final String AP_SOUTHEAST_AZURE = "https://dm1-apse.informaticacloud.com/";
+    public static final String AP_NORTHEAST_1_AZURE_LoginURL = "https://dm1-ap.informaticacloud.com/";
 
 
-    public static final String AP_NORTHEAST_2_LoginURL = "https://dm-apne.informaticacloud.com";
-    public static final String AUSTRALIA_LoginURL = "https://dm1-apau.informaticacloud.com";
+    public static final String AP_NORTHEAST_2_LoginURL = "https://dm-apne.informaticacloud.com/";
+    public static final String AUSTRALIA_LoginURL = "https://dm1-apau.informaticacloud.com/";
 
 
 
 
     /*     EMEA PODs     */
 
-    public static final String EM_WEST_1_LoginURL = "https://dm-em.informaticacloud.com";
-    public static final String EM_CENTRAL_1_AZURE_LoginURL = "https://dm1-em.informaticacloud.com";
-    public static final String UK_LoginURL = "https://dm-uk.informaticacloud.com";
-    public static final String EM_SOUTHEAST_1_AZURE_LoginURL = "https://dm1-em.informaticacloud.com";
-    public static final String EM_WEST_2_GCP_LoginURL = "https://dm2-em.informaticacloud.com";
+    public static final String EM_WEST_1_LoginURL = "https://dm-em.informaticacloud.com/";
+    public static final String EM_CENTRAL_1_AZURE_LoginURL = "https://dm1-em.informaticacloud.com/";
+    public static final String UK_LoginURL = "https://dm-uk.informaticacloud.com/";
+    public static final String EM_SOUTHEAST_1_AZURE_LoginURL = "https://dm1-em.informaticacloud.com/";
+    public static final String EM_WEST_2_GCP_LoginURL = "https://dm2-em.informaticacloud.com/";
+
 
 
 
