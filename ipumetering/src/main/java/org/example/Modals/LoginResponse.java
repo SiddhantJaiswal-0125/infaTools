@@ -292,7 +292,7 @@ public class LoginResponse {
         }
     }
 
-    public class UserGroup {
+    public static class UserGroup {
         private String id;
         private String orgId;
         private String name;
